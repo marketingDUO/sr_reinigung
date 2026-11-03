@@ -42,3 +42,7 @@ main>.section:not(.family):not(.contact):not(.subhero){background:#fff}
 /* Full-bleed yellow contact band with the same bounded content alignment. */
 main>.section.contact{max-width:none;padding-left:max(7%,calc((100% - 1100.8px)/2));padding-right:max(7%,calc((100% - 1100.8px)/2))}
 @media(max-width:760px){main>.section.contact{padding-left:6%;padding-right:6%}}
+
+/* Subpage hero backgrounds span the viewport; text aligns with bounded content. */
+main>.section.subhero{max-width:none;padding-left:max(7%,calc((100% - 1100.8px)/2));padding-right:max(7%,calc((100% - 1100.8px)/2))}
+@media(max-width:760px){main>.section.subhero{padding-left:6%;padding-right:6%}}
