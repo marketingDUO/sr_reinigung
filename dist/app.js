@@ -8,3 +8,17 @@ document.querySelectorAll('[data-legal]').forEach(b=>b.onclick=()=>show(b.datase
 let fileUrl;document.querySelector('#request')?.addEventListener('submit',e=>{e.preventDefault();const get=id=>document.getElementById(id).value;const text=`OBJEKTANFRAGE – SR GEBÄUDEREINIGUNG GMBH\n\nLeistung: ${get('service')}\nObjektart: ${get('object')}\nRhythmus: ${get('frequency')}\nOrt: ${get('place')}\n\nDetails:\n${get('message')||'Keine weiteren Angaben'}\n\nDiese Anfrage wurde lokal zusammengestellt und noch nicht versendet.\n`;if(fileUrl)URL.revokeObjectURL(fileUrl);fileUrl=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const result=document.querySelector('#result');result.hidden=false;result.replaceChildren();const t=document.createElement('strong');t.textContent='Ihre Zusammenfassung ist bereit. Noch nicht versendet.';const a=document.createElement('a');a.href=fileUrl;a.download='SR-Objektanfrage.txt';a.textContent='Zusammenfassung herunterladen ↓';result.append(t,a)});document.querySelector('#year').textContent=new Date().getFullYear();
 
 const requested=new URLSearchParams(location.search).get("leistung");const choices={"glas": "Glas- & Fensterreinigung", "unterhalt": "Unterhaltsreinigung", "bau": "Baureinigung", "grund": "Grund- & Bodenreinigung", "treppe": "Treppenhausreinigung", "sonder": "Sonderreinigung", "fassade": "Fassadenreinigung", "teppich": "Teppich- & Polsterreinigung", "praxis": "Praxis- & Hygienereinigung", "industrie": "Industrie- & Hallenreinigung", "aussen": "Außenflächenreinigung", "solar": "Photovoltaikreinigung"};if(requested&&choices[requested]&&document.querySelector("#service"))document.querySelector("#service").value=choices[requested];
+
+(() => {
+ const video=document.querySelector('#hero-video');
+ const control=document.querySelector('.video-toggle');
+ if(!video||!control)return;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ video.muted=true;
+ function update(){control.textContent=video.paused?'▶ Video abspielen':'Ⅱ Video pausieren';control.setAttribute('aria-label',video.paused?'Hintergrundvideo abspielen':'Hintergrundvideo pausieren');}
+ function play(){video.play().catch(update);}
+ if(reduced.matches){video.autoplay=false;video.pause();}else{play();}
+ update();video.addEventListener('play',update);video.addEventListener('pause',update);
+ control.addEventListener('click',()=>{if(video.paused)play();else video.pause();});
+ reduced.addEventListener('change',event=>{if(event.matches)video.pause();});
+})();
