@@ -42,9 +42,3 @@ main>.section:not(.family):not(.contact):not(.subhero){background:#fff}
 /* Full-bleed yellow contact band with the same bounded content alignment. */
 main>.section.contact{max-width:none;padding-left:max(7%,calc((100% - 1100.8px)/2));padding-right:max(7%,calc((100% - 1100.8px)/2))}
 @media(max-width:760px){main>.section.contact{padding-left:6%;padding-right:6%}}
-
-/* Subtle decorative foam stays exclusively in the desktop outer margins. */
-#foam-backdrop{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-body>header,body>main,body>footer{position:relative;z-index:1}
-body>header{position:sticky}
-@media(max-width:1400px),(prefers-reduced-motion:reduce){#foam-backdrop{display:none}}
