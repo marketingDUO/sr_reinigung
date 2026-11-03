@@ -26,13 +26,7 @@ html{background:#fff}
 body{width:100%;margin:0;background:transparent}
 @media(min-width:1280px){.hero h1{font-size:100px}}
 
-/* Quiet squeegee line art in the outer desktop margin. */
-body{position:relative;z-index:1}
-html::before{content:"";position:fixed;pointer-events:none;z-index:0;top:8vh;right:max(12px,calc((100vw - 1760px)/4));width:220px;height:540px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20260%20600%22%20fill%3D%22none%22%20stroke%3D%22%23ffc21c%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%2212%22%20y%3D%2255%22%20width%3D%22236%22%20height%3D%2222%22%20rx%3D%225%22%2F%3E%3Cpath%20d%3D%22M14%2082h232M107%2078v37l13%2020v42m33-99v37l-13%2020v42M108%20178h44l-5%20237q-17%2020-34%200z%22%2F%3E%3Cpath%20d%3D%22M119%20196l-2%20191m24-191-2%20191M41%20115v170m28-168v115M200%20112v200m29-198v124%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M53%20333c0%200-9%2013-9%2018a9%209%200%200%200%2018%200c0-5-9-18-9-18zm155%2029s-7%2010-7%2014a7%207%200%200%200%2014%200c0-4-7-14-7-14z%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M67%20447v24m-12-12h24M204%20475v16m-8-8h16%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat;opacity:.10;transform:translate3d(0,var(--squeegee-offset,0px),0) rotate(-18deg);will-change:transform}
-@media(max-width:1400px){html::before{display:none}}
-@media(prefers-reduced-motion:reduce){html::before{transform:rotate(-18deg);will-change:auto}}
-
-/* Full-width masthead; bounded content and white illustrated outer margins. */
+/* Full-width masthead; bounded content and white outer margins. */
 main>.section,main>.approach{max-width:1280px;margin-inline:auto}
 main>.section{padding-left:89.6px;padding-right:89.6px}
 header,footer{padding-left:max(5%,calc((100% - 1152px)/2));padding-right:max(5%,calc((100% - 1152px)/2))}
@@ -44,3 +38,7 @@ header,footer{padding-left:max(5%,calc((100% - 1152px)/2));padding-right:max(5%,
 @media(max-width:760px){main>.section,.hero-copy{padding-left:6%;padding-right:6%}}
 
 main>.section:not(.family):not(.contact):not(.subhero){background:#fff}
+
+/* Full-bleed yellow contact band with the same bounded content alignment. */
+main>.section.contact{max-width:none;padding-left:max(7%,calc((100% - 1100.8px)/2));padding-right:max(7%,calc((100% - 1100.8px)/2))}
+@media(max-width:760px){main>.section.contact{padding-left:6%;padding-right:6%}}
