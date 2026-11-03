@@ -22,3 +22,21 @@ const requested=new URLSearchParams(location.search).get("leistung");const choic
  control.addEventListener('click',()=>{if(video.paused)play();else video.pause();});
  reduced.addEventListener('change',event=>{if(event.matches)video.pause();});
 })();
+
+// Decorative background follows scroll gently, without changing document layout.
+(() => {
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');
+ const wide=matchMedia('(min-width:1401px)');
+ let queued=false;
+ function render(){
+  queued=false;
+  if(motion.matches||!wide.matches){document.documentElement.style.removeProperty('--squeegee-offset');return;}
+  const range=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+  const progress=Math.max(0,Math.min(1,scrollY/range));
+  document.documentElement.style.setProperty('--squeegee-offset',`${(progress*160).toFixed(1)}px`);
+ }
+ function schedule(){if(!queued){queued=true;requestAnimationFrame(render);}}
+ addEventListener('scroll',schedule,{passive:true});
+ addEventListener('resize',schedule,{passive:true});
+ motion.addEventListener('change',schedule);wide.addEventListener('change',schedule);render();
+})();
